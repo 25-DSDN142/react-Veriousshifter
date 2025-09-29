@@ -19,14 +19,25 @@ function drawInteraction(faces, hands) {
     // console.log(hand);
     let indexFingerTipX = hand.index_finger_tip.x;
     let indexFingerTipY = hand.index_finger_tip.y;
+    let middleFingerTipX = hand.middle_finger_tip.x;
+    let middleFingerTipY = hand.middle_finger_tip.y;
+    let ringFingerTipX = hand.ring_finger_tip.x;
+    let ringFingerTipY = hand.ring_finger_tip.y;
+    let pinkyFingerTipX = hand.pinky_finger_tip.x;
+    let pinkyFingerTipY = hand.pinky_finger_tip.y;
+    let thumbTipX = hand.thumb_tip.x;
+    let thumbTipY = hand.thumb_tip.y;
     /*
     Start drawing on the hands here
     */
 
     // pinchCircle(hand)
     fill(225, 225, 0);
+    ellipse(thumbTipX, thumbTipY, 30, 30);
     ellipse(indexFingerTipX, indexFingerTipY, 30, 30);
-
+    ellipse(middleFingerTipX, middleFingerTipY, 30, 30);
+    ellipse(ringFingerTipX, ringFingerTipY, 30, 30);
+    ellipse(pinkyFingerTipX, pinkyFingerTipY, 30, 30);
     /*
     Stop drawing on the hands here
     */
@@ -40,9 +51,11 @@ function drawInteraction(faces, hands) {
   for (let i = 0; i < faces.length; i++) {
     let face = faces[i]; // face holds all the keypoints of the face
     if (showKeypoints) {
-      //drawPoints(face)
+      drawPoints(face)
     }
     // console.log(face);
+
+    // Eyes
     let leftEyeCenterX = face.leftEye.centerX;
     let leftEyeCenterY = face.leftEye.centerY;
     let leftEyeWidth = face.leftEye.width;
@@ -52,6 +65,47 @@ function drawInteraction(faces, hands) {
     let rightEyeCenterY = face.rightEye.centerY;
     let rightEyeWidth = face.rightEye.width;
     let rightEyeHeight = face.rightEye.height;
+
+    // Eyebrows
+    let leftEyebrowCenterX = face.leftEyebrow.centerX;
+    let leftEyebrowCenterY = face.leftEyebrow.centerY;
+    let leftEyebrowWidth = face.leftEyebrow.width;
+    let leftEyebrowHeight = face.leftEyebrow.height;
+
+    let rightEyebrowCenterX = face.rightEyebrow.centerX;
+    let rightEyebrowCenterY = face.rightEyebrow.centerY;
+    let rightEyebrowWidth = face.rightEyebrow.width;
+    let rightEyebrowHeight = face.rightEyebrow.height;
+
+    // Nose
+    let noseTipX = face.keypoints[4].x;
+    let noseTipY = face.keypoints[4].y;
+    let rightNoseX = face.keypoints[248].x;
+    let rightNoseY = face.keypoints[248].y;
+    let leftNoseX = face.keypoints[3].x;
+    let leftNoseY = face.keypoints[3].y;
+    let nasalBridgeX = face.keypoints[6].x;
+    let nesalBridgeY = face.keypoints[6].y;
+    
+    // Face
+    let bottomChinX = face.keypoints[152].x;
+    let bottomChinY = face.keypoints[152].y;
+    let rightJawX = face.keypoints[397].x;
+    let rightJawY = face.keypoints[397].y;
+    let leftJawX = face.keypoints[172].x;
+    let leftJawY = face.keypoints[172].y;
+    let rightJawlineX = face.keypoints[379].x;
+    let rightJawlineY = face.keypoints[379].y;
+    let leftJawlineX = face.keypoints[150].x;
+    let leftJawlineY = face.keypoints[150].y;
+    let rightCheekX = face.keypoints[454].x;
+    let rightCheekY = face.keypoints[454].y;
+    let leftCheekX = face.keypoints[234].x;
+    let leftCheekY = face.keypoints[234].y;
+    let rightForeheadX = face.keypoints[251].x;
+    let rightForeheadY = face.keypoints[251].y;
+    let leftForeheadX = face.keypoints[21].x;
+    let leftForeheadY = face.keypoints[21].y;
     /*
     Once this program has a face, it knows some things about it.
     This includes how to draw a box around the face, and an oval. 
@@ -66,16 +120,45 @@ function drawInteraction(faces, hands) {
     /*
     Start drawing on the face here
     */
+    // Face
+    fill(255,238,217)
+    stroke(0)
+    strokeWeight(1)
+    beginShape()
+    vertex(rightForeheadX,rightForeheadY)
+    quadraticVertex(rightCheekX,rightCheekY,rightJawX,rightJawY)
+    vertex(rightJawX,rightJawY)
+    quadraticVertex(rightJawlineX,rightJawlineY,bottomChinX,bottomChinY)
+    quadraticVertex(leftJawlineX,leftJawlineY,leftJawX,leftJawY)
+    quadraticVertex(leftCheekX,leftCheekY,leftForeheadX,leftForeheadY)
+    vertex(leftForeheadX,leftForeheadY)
+    endShape()
+    
+    // Nose
+    fill(255,246,236)
+    noStroke()
+    beginShape()
+    vertex(nasalBridgeX,nesalBridgeY)
+    vertex(rightNoseX,rightNoseY)
+    vertex(noseTipX,noseTipY)
+    vertex(leftNoseX,leftNoseY)
+    vertex(nasalBridgeX,nesalBridgeY)
+    endShape()
 
+    // Eyes
     fill(255, 255, 255);
-    ellipse(leftEyeCenterX, leftEyeCenterY, leftEyeWidth, leftEyeHeight);
-    ellipse(rightEyeCenterX, rightEyeCenterY, rightEyeWidth, rightEyeHeight);
+    stroke(0)
+    strokeWeight(2)
+    ellipse(leftEyeCenterX, leftEyeCenterY, leftEyeWidth*1.2, leftEyeHeight*1.5);
+    ellipse(rightEyeCenterX, rightEyeCenterY, rightEyeWidth*1.2, rightEyeHeight*1.5);
     fill(0)
-    ellipse(leftEyeCenterX, leftEyeCenterY, 20, leftEyeHeight);
-    ellipse(rightEyeCenterX, rightEyeCenterY, 20, leftEyeHeight);
+    ellipse(leftEyeCenterX, leftEyeCenterY, 30, leftEyeHeight*1.5);
+    ellipse(rightEyeCenterX, rightEyeCenterY, 30, leftEyeHeight*1.5);
 
     drawX(rightEyeCenterX,rightEyeCenterY);
     drawX(leftEyeCenterX,leftEyeCenterY);
+
+    
      // fill(225, 225, 0);
     // ellipse(leftEyeCenterX, leftEyeCenterY, leftEyeWidth, leftEyeHeight);
     //drawPoints(face.leftEye);
