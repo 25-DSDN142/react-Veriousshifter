@@ -77,7 +77,7 @@ function drawInteraction(faces, hands) {
     let rightEyebrowWidth = face.rightEyebrow.width;
     let rightEyebrowHeight = face.rightEyebrow.height;
 
-    // Nose
+    // BrightNose
     let noseTipX = face.keypoints[4].x;
     let noseTipY = face.keypoints[4].y;
     let rightNoseX = face.keypoints[248].x;
