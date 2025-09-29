@@ -9,9 +9,9 @@ function drawInteraction(faces, hands) {
   // for loop to capture if there is more than one face on the screen. This applies the same process to all faces. 
   for (let i = 0; i < faces.length; i++) {
     let face = faces[i]; // face holds all the keypoints of the face\
-    console.log(face);
+    //console.log(face);
     if (showKeypoints) {
-      drawPoints(face)
+      //drawPoints(face)
     }
 
     /*
@@ -35,6 +35,7 @@ function drawInteraction(faces, hands) {
     let leftEyeCenterY = face.leftEye.centerY;
     let leftEyeWidth = face.leftEye.width;
     let leftEyeHeight = face.leftEye.height;
+
     // Left eyebrow
     let leftEyebrowCenterX = face.leftEyebrow.centerX;
     let leftEyebrowCenterY = face.leftEyebrow.centerY;
@@ -64,20 +65,28 @@ function drawInteraction(faces, hands) {
     /*
     Start drawing on the face here
     */
-    noStroke()
-    fill(225, 225, 0);
-    // fill(get(leftEyeCenterX, leftEyeCenterY))
-
+   
+    //fill(249,197,135)
+    //ellipse(faceCenterX, faceCenterY, faceWidth, faceheight);
+    fill(255, 255, 255);
     ellipse(leftEyeCenterX, leftEyeCenterY, leftEyeWidth, leftEyeHeight);
+    ellipse(rightEyeCenterX, rightEyeCenterY, rightEyeWidth, rightEyeHeight);
+    fill(0)
+    ellipse(leftEyeCenterX, leftEyeCenterY, 20, leftEyeHeight);
+    ellipse(rightEyeCenterX, rightEyeCenterY, 20, leftEyeHeight);
+    
+    
+    
+    //drawPoints(face.leftEye);
+    //drawPoints(face.leftEyebrow);
+    //drawPoints(face.lips);
+    //drawPoints(face.rightEye);
+    //drawPoints(face.rightEyebrow);
 
-    drawPoints(face.leftEye);
-    drawPoints(face.leftEyebrow);
-    drawPoints(face.lips);
-    drawPoints(face.rightEye);
-    drawPoints(face.rightEyebrow);
-
-    // drawX(rightEyeCenterX,rightEyeCenterY);
-    // drawX(leftEyeCenterX,leftEyeCenterY);
+    
+    drawX(rightEyeCenterX,rightEyeCenterY);
+    //console.log(rightEyeCenterX)
+    drawX(leftEyeCenterX,leftEyeCenterY);
 
 
     // drawX(noseTipX,noseTipY); 
@@ -98,9 +107,11 @@ function drawInteraction(faces, hands) {
 function drawX(X, Y) {
   push()
 
-  strokeWeight(15)
-  line(X - 20, Y - 20, X + 20, Y + 20)
-  line(X - 20, Y + 20, X + 20, Y - 20)
+  fill(178,34,34)
+  stroke(178,34,34)
+  strokeWeight(4)
+  line(X - 6, Y - 6, X + 6, Y + 6)
+  line(X - 6, Y + 6, X + 6, Y - 6)
 
   pop()
 }

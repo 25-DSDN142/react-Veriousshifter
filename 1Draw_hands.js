@@ -17,6 +17,16 @@ function drawInteraction(faces, hands) {
     // This is how to load in the x and y of a point on the hand.
     let indexFingerTipX = hand.index_finger_tip.x;
     let indexFingerTipY = hand.index_finger_tip.y;
+    let middleFingerTipX = hand.middle_finger_tip.x;
+    let middleFingerTipY = hand.middle_finger_tip.y;
+    let ringFingerTipX = hand.ring_finger_tip.x;
+    let ringFingerTipY = hand.ring_finger_tip.y;
+    let pinkyFingerTipX = hand.pinky_finger_tip.x;
+    let pinkyFingerTipY = hand.pinky_finger_tip.y;
+    let thumbTipX = hand.thumb_tip.x;
+    let thumbTipY = hand.thumb_tip.y;
+    //  let ringFingerTipX = hand.ring_finger_tip.x;
+    //  let ringFingerTipY = hand.ring_finger_tip.y;
 
     //  let pinkyFingerTipX = hand.pinky_finger_tip.x;
     //  let pinkyFingerTipY = hand.pinky_finger_tip.y;
@@ -26,8 +36,11 @@ function drawInteraction(faces, hands) {
     */
 
     fill(22, 225, 0);
-    ellipse(indexFingerTipX, indexFingerTipY, 30, 30);
-
+    ellipse(thumbTipX, thumbTipY, 40, 40);
+    ellipse(indexFingerTipX, indexFingerTipY, 40, 40);
+    ellipse(middleFingerTipX, middleFingerTipY, 40, 40);
+    ellipse(ringFingerTipX, ringFingerTipY, 40, 40);
+    ellipse(pinkyFingerTipX, pinkyFingerTipY, 40, 40);
     // drawPoints(hand)
 
     //fingerPuppet(indexFingerTipX, indexFingerTipY);

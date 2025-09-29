@@ -40,9 +40,18 @@ function drawInteraction(faces, hands) {
   for (let i = 0; i < faces.length; i++) {
     let face = faces[i]; // face holds all the keypoints of the face
     if (showKeypoints) {
-      drawPoints(face)
+      //drawPoints(face)
     }
     // console.log(face);
+    let leftEyeCenterX = face.leftEye.centerX;
+    let leftEyeCenterY = face.leftEye.centerY;
+    let leftEyeWidth = face.leftEye.width;
+    let leftEyeHeight = face.leftEye.height;
+
+    let rightEyeCenterX = face.rightEye.centerX;
+    let rightEyeCenterY = face.rightEye.centerY;
+    let rightEyeWidth = face.rightEye.width;
+    let rightEyeHeight = face.rightEye.height;
     /*
     Once this program has a face, it knows some things about it.
     This includes how to draw a box around the face, and an oval. 
@@ -58,14 +67,23 @@ function drawInteraction(faces, hands) {
     Start drawing on the face here
     */
 
-    // fill(225, 225, 0);
-    // ellipse(leftEyeCenterX, leftEyeCenterY, leftEyeWidth, leftEyeHeight);
+    fill(255, 255, 255);
+    ellipse(leftEyeCenterX, leftEyeCenterY, leftEyeWidth, leftEyeHeight);
+    ellipse(rightEyeCenterX, rightEyeCenterY, rightEyeWidth, rightEyeHeight);
+    fill(0)
+    ellipse(leftEyeCenterX, leftEyeCenterY, 20, leftEyeHeight);
+    ellipse(rightEyeCenterX, rightEyeCenterY, 20, leftEyeHeight);
 
-    drawPoints(face.leftEye);
-    drawPoints(face.leftEyebrow);
-    drawPoints(face.lips);
-    drawPoints(face.rightEye);
-    drawPoints(face.rightEyebrow);
+    drawX(rightEyeCenterX,rightEyeCenterY);
+    drawX(leftEyeCenterX,leftEyeCenterY);
+     // fill(225, 225, 0);
+    // ellipse(leftEyeCenterX, leftEyeCenterY, leftEyeWidth, leftEyeHeight);
+    //drawPoints(face.leftEye);
+    //drawPoints(face.leftEyebrow);
+    //drawPoints(face.lips);
+    //drawPoints(face.rightEye);
+    //drawPoints(face.rightEyebrow);
+    
     /*
     Stop drawing on the face here
     */
@@ -74,7 +92,17 @@ function drawInteraction(faces, hands) {
   //------------------------------------------------------
   // You can make addtional elements here, but keep the face drawing inside the for loop. 
 }
+function drawX(X, Y) {
+  push()
 
+  fill(178,34,34)
+  stroke(178,34,34)
+  strokeWeight(4)
+  line(X - 6, Y - 6, X + 6, Y + 6)
+  line(X - 6, Y + 6, X + 6, Y - 6)
+
+  pop()
+}
 
 function drawConnections(hand) {
   // Draw the skeletal connections
