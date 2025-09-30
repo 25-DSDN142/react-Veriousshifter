@@ -33,11 +33,12 @@ function drawInteraction(faces, hands) {
 
     // pinchCircle(hand)
     fill(225, 225, 0);
-    ellipse(thumbTipX, thumbTipY, 30, 30);
-    ellipse(indexFingerTipX, indexFingerTipY, 30, 30);
-    ellipse(middleFingerTipX, middleFingerTipY, 30, 30);
-    ellipse(ringFingerTipX, ringFingerTipY, 30, 30);
-    ellipse(pinkyFingerTipX, pinkyFingerTipY, 30, 30);
+    ellipse(thumbTipX, thumbTipY, 40, 40);
+    ellipse(indexFingerTipX, indexFingerTipY, 40, 40);
+    ellipse(middleFingerTipX, middleFingerTipY, 40, 40);
+    ellipse(ringFingerTipX, ringFingerTipY, 40, 40);
+    ellipse(pinkyFingerTipX, pinkyFingerTipY, 40, 40);
+
     /*
     Stop drawing on the hands here
     */
@@ -51,42 +52,42 @@ function drawInteraction(faces, hands) {
   for (let i = 0; i < faces.length; i++) {
     let face = faces[i]; // face holds all the keypoints of the face
     if (showKeypoints) {
-      drawPoints(face)
+      //drawPoints(face)
     }
     // console.log(face);
 
-    // Eyes
+    // Left Eye
     let leftEyeCenterX = face.leftEye.centerX;
     let leftEyeCenterY = face.leftEye.centerY;
     let leftEyeWidth = face.leftEye.width;
     let leftEyeHeight = face.leftEye.height;
-
+    // Right Eye
     let rightEyeCenterX = face.rightEye.centerX;
     let rightEyeCenterY = face.rightEye.centerY;
     let rightEyeWidth = face.rightEye.width;
     let rightEyeHeight = face.rightEye.height;
 
-    // Eyebrows
+    // Left eyebrow
     let leftEyebrowCenterX = face.leftEyebrow.centerX;
     let leftEyebrowCenterY = face.leftEyebrow.centerY;
     let leftEyebrowWidth = face.leftEyebrow.width;
     let leftEyebrowHeight = face.leftEyebrow.height;
-
+    // Right eyebrow
     let rightEyebrowCenterX = face.rightEyebrow.centerX;
     let rightEyebrowCenterY = face.rightEyebrow.centerY;
     let rightEyebrowWidth = face.rightEyebrow.width;
     let rightEyebrowHeight = face.rightEyebrow.height;
 
-    // BrightNose
+    // Brightnose
     let noseTipX = face.keypoints[4].x;
     let noseTipY = face.keypoints[4].y;
     let rightNoseX = face.keypoints[248].x;
     let rightNoseY = face.keypoints[248].y;
-    let leftNoseX = face.keypoints[3].x;
+    let leftNoseX = face.keypoints[3].x
     let leftNoseY = face.keypoints[3].y;
     let nasalBridgeX = face.keypoints[6].x;
-    let nesalBridgeY = face.keypoints[6].y;
-    
+    let nasalBridgeY = face.keypoints[6].y;
+
     // Face
     let bottomChinX = face.keypoints[152].x;
     let bottomChinY = face.keypoints[152].y;
@@ -106,6 +107,7 @@ function drawInteraction(faces, hands) {
     let rightForeheadY = face.keypoints[251].y;
     let leftForeheadX = face.keypoints[21].x;
     let leftForeheadY = face.keypoints[21].y;
+  
     /*
     Once this program has a face, it knows some things about it.
     This includes how to draw a box around the face, and an oval. 
@@ -120,30 +122,30 @@ function drawInteraction(faces, hands) {
     /*
     Start drawing on the face here
     */
+
     // Face
     fill(255,238,217)
     stroke(0)
     strokeWeight(1)
-    beginShape()
-    vertex(rightForeheadX,rightForeheadY)
-    quadraticVertex(rightCheekX,rightCheekY,rightJawX,rightJawY)
-    vertex(rightJawX,rightJawY)
-    quadraticVertex(rightJawlineX,rightJawlineY,bottomChinX,bottomChinY)
-    quadraticVertex(leftJawlineX,leftJawlineY,leftJawX,leftJawY)
-    quadraticVertex(leftCheekX,leftCheekY,leftForeheadX,leftForeheadY)
-    vertex(leftForeheadX,leftForeheadY)
-    endShape()
-    
+    beginShape();
+    vertex(rightForeheadX, rightForeheadY);
+    quadraticVertex(rightCheekX, rightCheekY, rightJawX, rightJawY);
+    vertex(rightJawX, rightJawY);
+    quadraticVertex(rightJawlineX, rightJawlineY, bottomChinX, bottomChinY);
+    quadraticVertex(leftJawlineX, leftJawlineY, leftJawX, leftJawY);
+    quadraticVertex(leftCheekX, leftCheekY, leftForeheadX, leftForeheadY);
+    vertex(leftForeheadX, leftForeheadY);
+    endShape();
+
     // Nose
     fill(255,246,236)
     noStroke()
-    beginShape()
-    vertex(nasalBridgeX,nesalBridgeY)
-    vertex(rightNoseX,rightNoseY)
-    vertex(noseTipX,noseTipY)
-    vertex(leftNoseX,leftNoseY)
-    vertex(nasalBridgeX,nesalBridgeY)
-    endShape()
+    beginShape();
+    vertex(nasalBridgeX, nasalBridgeY);
+    vertex(rightNoseX, rightNoseY);
+    vertex(noseTipX, noseTipY);
+    vertex(leftNoseX, leftNoseY);
+    endShape();
 
     // Eyes
     fill(255, 255, 255);
@@ -157,8 +159,8 @@ function drawInteraction(faces, hands) {
 
     drawX(rightEyeCenterX,rightEyeCenterY);
     drawX(leftEyeCenterX,leftEyeCenterY);
-
     
+
      // fill(225, 225, 0);
     // ellipse(leftEyeCenterX, leftEyeCenterY, leftEyeWidth, leftEyeHeight);
     //drawPoints(face.leftEye);
