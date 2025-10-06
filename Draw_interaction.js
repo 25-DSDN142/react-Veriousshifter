@@ -1,10 +1,11 @@
 // ----=  HANDS  =----
+  let ComputingLabImage;
 function prepareInteraction() {
-  //bgImage = loadImage('/images/background.png');
+  ComputingLabImage = loadImage('ComputingLabImage.jpg');
 }
 
 function drawInteraction(faces, hands) {
-
+  //image(ComputingLabImage, 0, 0, width, height);
   // hands part
   // USING THE GESTURE DETECTORS (check their values in the debug menu)
   // detectHandGesture(hand) returns "Pinch", "Peace", "Thumbs Up", "Pointing", "Open Palm", or "Fist"
@@ -61,6 +62,7 @@ function drawInteraction(faces, hands) {
     let leftEyeCenterY = face.leftEye.centerY;
     let leftEyeWidth = face.leftEye.width;
     let leftEyeHeight = face.leftEye.height;
+
     // Right Eye
     let rightEyeCenterX = face.rightEye.centerX;
     let rightEyeCenterY = face.rightEye.centerY;
@@ -72,6 +74,7 @@ function drawInteraction(faces, hands) {
     let leftEyebrowCenterY = face.leftEyebrow.centerY;
     let leftEyebrowWidth = face.leftEyebrow.width;
     let leftEyebrowHeight = face.leftEyebrow.height;
+
     // Right eyebrow
     let rightEyebrowCenterX = face.rightEyebrow.centerX;
     let rightEyebrowCenterY = face.rightEyebrow.centerY;
@@ -79,14 +82,14 @@ function drawInteraction(faces, hands) {
     let rightEyebrowHeight = face.rightEyebrow.height;
 
     // Brightnose
-    let noseTipX = face.keypoints[4].x;
-    let noseTipY = face.keypoints[4].y;
-    let rightNoseX = face.keypoints[248].x;
-    let rightNoseY = face.keypoints[248].y;
-    let leftNoseX = face.keypoints[3].x
-    let leftNoseY = face.keypoints[3].y;
-    let nasalBridgeX = face.keypoints[6].x;
-    let nasalBridgeY = face.keypoints[6].y;
+    let noseTipX = face.keypoints[1].x;
+    let noseTipY = face.keypoints[1].y;
+    let rightNoseX = face.keypoints[275].x;
+    let rightNoseY = face.keypoints[275].y;
+    let leftNoseX = face.keypoints[45].x
+    let leftNoseY = face.keypoints[45].y;
+    let nasalBridgeX = face.keypoints[195].x;
+    let nasalBridgeY = face.keypoints[195].y;
 
     // Face
     let bottomChinX = face.keypoints[152].x;
@@ -107,7 +110,60 @@ function drawInteraction(faces, hands) {
     let rightForeheadY = face.keypoints[251].y;
     let leftForeheadX = face.keypoints[21].x;
     let leftForeheadY = face.keypoints[21].y;
-  
+    let foreheadCenterX = face.keypoints[10].x;
+    let foreheadCenterY = face.keypoints[10].y;
+    let rightForeheadCenterX = face.keypoints[297].x;
+    let rightForeheadCenterY = face.keypoints[297].y;
+    let leftForeheadCenterX = face.keypoints[67].x;
+    let leftForeheadCenterY = face.keypoints[67].y;
+
+    // Lips
+    let lipsCenterX = face.lips.centerX;
+    let lipsCenterY = face.lips.centerY;
+    let lipsWidth = face.lips.width;
+    let lipsHeight = face.lips.height;
+    let lipLeftX = face.keypoints[40].x;
+    let lipLeftY = face.keypoints[40].y;
+    let lipRightX = face.keypoints[270].x;
+    let lipRightY = face.keypoints[270].y;
+
+    // Upper lip
+    let lipUpperCentreTopX = face.keypoints[0].x;
+    let lipUpperCentreTopY = face.keypoints[0].y;
+    let lipUpperLeftX = face.keypoints[37].x;
+    let lipUpperLeftY = face.keypoints[37].y;
+    let lipUpperRightX = face.keypoints[267].x;
+    let lipUpperRightY = face.keypoints[267].y;
+    let leftLipUpperMidddleX = face.keypoints[39].x;
+    let leftLipUpperMidddleY = face.keypoints[39].y;
+    let rightLipUpperMidddleX = face.keypoints[269].x;
+    let rightLipUpperMidddleY = face.keypoints[269].y;
+    let lipUpperCentreBottomX = face.keypoints[12].x;
+    let lipUpperCentreBottomY = face.keypoints[12].y;
+
+    // Lower lip
+    let lipLowerCentreTopX = face.keypoints[14].x;
+    let lipLowerCentreTopY = face.keypoints[14].y;
+    let lipLowerCentreBottomX = face.keypoints[15].x;
+    let lipLowerCentreBottomY = face.keypoints[15].y;
+    let lipLowerLeftX = face.keypoints[179].x;
+    let lipLowerLeftY = face.keypoints[179].y;
+    let lipLowerRightX = face.keypoints[403].x;
+    let lipLowerRightY = face.keypoints[403].y;
+
+    // Hair
+    let hairPoint1X = face.keypoints[338].x;
+    let hairPoint1Y = face.keypoints[338].y;
+    let hairPoint2X = face.keypoints[336].x;
+    let hairPoint2Y = face.keypoints[336].y;
+    let hairPoint3X = face.keypoints[168].x;
+    let hairPoint3Y = face.keypoints[168].y;
+    let hairPoint4X = face.keypoints[151].x;
+    let hairPoint4Y = face.keypoints[151].y;
+    let hairPoint5X = face.keypoints[10].x;
+    let hairPoint5Y = face.keypoints[10].y;
+
+    
     /*
     Once this program has a face, it knows some things about it.
     This includes how to draw a box around the face, and an oval. 
@@ -128,37 +184,63 @@ function drawInteraction(faces, hands) {
     stroke(0)
     strokeWeight(1)
     beginShape();
-    vertex(rightForeheadX, rightForeheadY);
-    quadraticVertex(rightCheekX, rightCheekY, rightJawX, rightJawY);
-    vertex(rightJawX, rightJawY);
-    quadraticVertex(rightJawlineX, rightJawlineY, bottomChinX, bottomChinY);
-    quadraticVertex(leftJawlineX, leftJawlineY, leftJawX, leftJawY);
-    quadraticVertex(leftCheekX, leftCheekY, leftForeheadX, leftForeheadY);
-    vertex(leftForeheadX, leftForeheadY);
+    vertex(rightForeheadX,rightForeheadY);
+    quadraticVertex(rightCheekX,rightCheekY,rightJawX,rightJawY);
+    vertex(rightJawX,rightJawY);
+    quadraticVertex(rightJawlineX,rightJawlineY,bottomChinX,bottomChinY);
+    quadraticVertex(leftJawlineX,leftJawlineY,leftJawX,leftJawY);
+    quadraticVertex(leftCheekX,leftCheekY,leftForeheadX,leftForeheadY);
+    quadraticVertex(leftForeheadCenterX,leftForeheadCenterY,foreheadCenterX,foreheadCenterY);
+    quadraticVertex(rightForeheadCenterX,rightForeheadCenterY,rightForeheadX,rightForeheadY);
+    endShape();
+
+    // Lips
+    fill(193,55,69)
+    noStroke()
+    beginShape();
+    vertex(lipLeftX,lipLeftY);
+    quadraticVertex(leftLipUpperMidddleX,leftLipUpperMidddleY,lipUpperLeftX,lipUpperLeftY);
+    quadraticVertex(lipUpperCentreTopX,lipUpperCentreTopY,lipUpperRightX,lipUpperRightY);
+    quadraticVertex(rightLipUpperMidddleX,rightLipUpperMidddleY,lipRightX,lipRightY);
+    quadraticVertex(lipUpperCentreBottomX,lipUpperCentreBottomY,lipLeftX,lipLeftY);
+    quadraticVertex(lipLowerCentreTopX,lipLowerCentreTopY,lipRightX,lipRightY);
+    quadraticVertex(lipLowerRightX,lipLowerRightY,lipLowerCentreBottomX,lipLowerCentreBottomY);
+    quadraticVertex(lipLowerLeftX,lipLowerLeftY,lipLeftX,lipLeftY);
     endShape();
 
     // Nose
     fill(255,246,236)
     noStroke()
     beginShape();
-    vertex(nasalBridgeX, nasalBridgeY);
-    vertex(rightNoseX, rightNoseY);
-    vertex(noseTipX, noseTipY);
-    vertex(leftNoseX, leftNoseY);
+    vertex(nasalBridgeX,nasalBridgeY);
+    vertex(rightNoseX,rightNoseY);
+    vertex(noseTipX,noseTipY);
+    vertex(leftNoseX,leftNoseY);
     endShape();
 
     // Eyes
     fill(255, 255, 255);
     stroke(0)
     strokeWeight(2)
-    ellipse(leftEyeCenterX, leftEyeCenterY, leftEyeWidth*1.2, leftEyeHeight*1.5);
-    ellipse(rightEyeCenterX, rightEyeCenterY, rightEyeWidth*1.2, rightEyeHeight*1.5);
+    ellipse(leftEyeCenterX,leftEyeCenterY,leftEyeWidth*1.2,leftEyeHeight*1.5);
+    ellipse(rightEyeCenterX,rightEyeCenterY,rightEyeWidth*1.2,rightEyeHeight*1.5);
     fill(0)
-    ellipse(leftEyeCenterX, leftEyeCenterY, 30, leftEyeHeight*1.5);
-    ellipse(rightEyeCenterX, rightEyeCenterY, 30, leftEyeHeight*1.5);
+    ellipse(leftEyeCenterX,leftEyeCenterY,30,leftEyeHeight*1.5);
+    ellipse(rightEyeCenterX,rightEyeCenterY,30,leftEyeHeight*1.5);
 
     drawX(rightEyeCenterX,rightEyeCenterY);
     drawX(leftEyeCenterX,leftEyeCenterY);
+
+    // Hair
+    fill(219,228,238)
+    stroke(0)
+    strokeWeight(1)
+    beginShape();
+    vertex(hairPoint1X,hairPoint1Y);
+    quadraticVertex(hairPoint2X,hairPoint2Y,hairPoint3X,hairPoint3Y);
+    quadraticVertex(hairPoint4X-20,hairPoint4Y,hairPoint5X,hairPoint5Y-30);
+    vertex(hairPoint1X,hairPoint1Y);
+    endShape();
     
 
      // fill(225, 225, 0);
