@@ -162,6 +162,80 @@ function drawInteraction(faces, hands) {
     let hairPoint4Y = face.keypoints[151].y;
     let hairPoint5X = face.keypoints[10].x;
     let hairPoint5Y = face.keypoints[10].y;
+    let hairPoint6X = face.keypoints[371].x;
+    let hairPoint6Y = face.keypoints[371].y;
+    let hairPoint7X = face.keypoints[108].x;
+    let hairPoint7Y = face.keypoints[108].y;
+    let hairPoint8X = face.keypoints[193].x;
+    let hairPoint8Y = face.keypoints[193].y;
+    let hairPoint9X = face.keypoints[56].x;
+    let hairPoint9Y = face.keypoints[56].y;
+    let hairPoint10X = face.keypoints[66].x;
+    let hairPoint10Y = face.keypoints[66].y;
+    let hairPoint11X = face.keypoints[158].x;
+    let hairPoint11Y = face.keypoints[158].y;
+    let hairPoint12X = face.keypoints[67].x;
+    let hairPoint12Y = face.keypoints[67].y;
+    let hairPoint13X = face.keypoints[162].x;
+    let hairPoint13Y = face.keypoints[162].y;
+    let hairPoint14X = face.keypoints[205].x;
+    let hairPoint14Y = face.keypoints[205].y;
+    let hairPoint15X = face.keypoints[70].x;
+    let hairPoint15Y = face.keypoints[70].y;
+    let hairPoint16X = face.keypoints[93].x;
+    let hairPoint16Y = face.keypoints[93].y;
+    let hairPoint17X = face.keypoints[58].x;
+    let hairPoint17Y = face.keypoints[58].y;
+    let hairPoint18X = face.keypoints[71].x;
+    let hairPoint18Y = face.keypoints[71].y;
+    let hairPoint19X = face.keypoints[227].x;
+    let hairPoint19Y = face.keypoints[227].y;
+    let hairPoint20X = face.keypoints[177].x;
+    let hairPoint20Y = face.keypoints[177].y;
+    let hairPoint21X = face.keypoints[137].x;
+    let hairPoint21Y = face.keypoints[137].y;
+    let hairPoint22X = face.keypoints[54].x;
+    let hairPoint22Y = face.keypoints[54].y;
+    let hairPoint23X = face.keypoints[127].x;
+    let hairPoint23Y = face.keypoints[127].y;
+    let hairPoint24X = face.keypoints[356].x;
+    let hairPoint24Y = face.keypoints[356].y;
+    let hairPoint25X = face.keypoints[361].x;
+    let hairPoint25Y = face.keypoints[361].y;
+    let hairPoint26X = face.keypoints[367].x;
+    let hairPoint26Y = face.keypoints[367].y;
+    let hairPoint27X = face.keypoints[297].x;
+    let hairPoint27Y = face.keypoints[297].y;
+    let hairPoint28X = face.keypoints[333].x;
+    let hairPoint28Y = face.keypoints[333].y;
+    let hairPoint29X = face.keypoints[366].x;
+    let hairPoint29Y = face.keypoints[366].y;
+    let hairPoint30X = face.keypoints[427].x;
+    let hairPoint30Y = face.keypoints[427].y;
+    let hairPoint31X = face.keypoints[401].x;
+    let hairPoint31Y = face.keypoints[401].y;
+    let hairPoint32X = face.keypoints[454].x;
+    let hairPoint32Y = face.keypoints[454].y;
+    let hairPoint33X = face.keypoints[389].x;
+    let hairPoint33Y = face.keypoints[389].y;
+    let hairPoint34X = face.keypoints[298].x;
+    let hairPoint34Y = face.keypoints[298].y;
+    let hairPoint35X = face.keypoints[345].x;
+    let hairPoint35Y = face.keypoints[345].y;
+    let hairPoint36X = face.keypoints[447].x;
+    let hairPoint36Y = face.keypoints[447].y;
+    let hairPoint37X = face.keypoints[284].x;
+    let hairPoint37Y = face.keypoints[284].y;
+    let hairPoint38X = face.keypoints[251].x;
+    let hairPoint38Y = face.keypoints[251].y;
+    let hairPoint39X = face.keypoints[300].x;
+    let hairPoint39Y = face.keypoints[300].y;
+    let hairPoint40X = face.keypoints[276].x;
+    let hairPoint40Y = face.keypoints[276].y;
+    let hairPoint41X = face.keypoints[353].x;
+    let hairPoint41Y = face.keypoints[353].y;
+    let hairPoint42X = face.keypoints[265].x;
+    let hairPoint42Y = face.keypoints[265].y;
 
     
     /*
@@ -194,6 +268,7 @@ function drawInteraction(faces, hands) {
     quadraticVertex(rightForeheadCenterX,rightForeheadCenterY,rightForeheadX,rightForeheadY);
     endShape();
 
+
     // Lips
     fill(193,55,69)
     noStroke()
@@ -208,6 +283,7 @@ function drawInteraction(faces, hands) {
     quadraticVertex(lipLowerLeftX,lipLowerLeftY,lipLeftX,lipLeftY);
     endShape();
 
+
     // Nose
     fill(255,246,236)
     noStroke()
@@ -217,6 +293,7 @@ function drawInteraction(faces, hands) {
     vertex(noseTipX,noseTipY);
     vertex(leftNoseX,leftNoseY);
     endShape();
+
 
     // Eyes
     fill(255, 255, 255);
@@ -231,16 +308,109 @@ function drawInteraction(faces, hands) {
     drawX(rightEyeCenterX,rightEyeCenterY);
     drawX(leftEyeCenterX,leftEyeCenterY);
 
-    // Hair
+
+    // Backside of the Hair
     fill(219,228,238)
     stroke(0)
     strokeWeight(1)
+    beginShape();
+    vertex(hairPoint15X,hairPoint15Y);
+    quadraticVertex(hairPoint16X,hairPoint16Y,hairPoint17X,hairPoint17Y+80);
+    quadraticVertex(hairPoint16X-30,hairPoint16Y+40,hairPoint18X,hairPoint18Y);
+    quadraticVertex(hairPoint19X-20,hairPoint19Y+15,hairPoint20X-10,hairPoint20Y+60);
+    quadraticVertex(hairPoint21X-30,hairPoint21Y+50,hairPoint19X-25,hairPoint19Y);
+    quadraticVertex(hairPoint19X-28,hairPoint19Y+20,hairPoint20X-36,hairPoint20Y);
+    quadraticVertex(hairPoint23X-70,hairPoint23Y-160,hairPoint22X+100,hairPoint22Y-120);
+    quadraticVertex(hairPoint22X+120,hairPoint22Y-120,hairPoint5X+20,hairPoint5Y-80)
+    quadraticVertex(hairPoint24X+40,hairPoint24Y-160,hairPoint25X+20,hairPoint25Y-40);
+    quadraticVertex(hairPoint26X+10,hairPoint26Y-20,rightJawX,rightJawY);
+    quadraticVertex(rightCheekX,rightCheekY,rightForeheadX,rightForeheadY);
+    quadraticVertex(rightForeheadCenterX,rightForeheadCenterY,foreheadCenterX,foreheadCenterY);
+    quadraticVertex(leftForeheadCenterX,leftForeheadCenterY,hairPoint15X,hairPoint15Y);
+    endShape();
+
+    // Frontside of the Hair
+    beginShape();
+    vertex(hairPoint5X+20,hairPoint5Y-80);
+    quadraticVertex(hairPoint5X+50,hairPoint5Y-40,hairPoint1X,hairPoint1Y);
+    endShape();
+    beginShape();
+    vertex(hairPoint5X+20,hairPoint5Y-80);
+    quadraticVertex(hairPoint23X-50,hairPoint23Y-140,hairPoint19X-25,hairPoint19Y);
+    endShape();
+
+    // Rightside of the Hair
+    beginShape();
+    vertex(hairPoint1X,hairPoint1Y);
+    vertex(hairPoint27X,hairPoint27Y-60);
+    quadraticVertex(hairPoint28X+20,hairPoint28Y-100,hairPoint37X+20,hairPoint37Y);
+    quadraticVertex(hairPoint38X+20,hairPoint38Y,hairPoint39X+50,hairPoint39Y);
+    quadraticVertex(hairPoint40X+50,hairPoint40Y,hairPoint33X+16,hairPoint33Y);
+    vertex(hairPoint41X+50,hairPoint41Y);
+    quadraticVertex(hairPoint42X+20,hairPoint42Y,hairPoint24X,hairPoint24Y);
+    quadraticVertex(hairPoint27X+20,hairPoint27Y-60,hairPoint1X,hairPoint1Y);
+    endShape();
+
+    beginShape();
+    vertex(hairPoint1X,hairPoint1Y);
+    vertex(hairPoint27X,hairPoint27Y-50);
+    quadraticVertex(hairPoint28X+20,hairPoint28Y-80,hairPoint34X+20,hairPoint34Y);
+    quadraticVertex(hairPoint33X,hairPoint33Y,hairPoint35X+40,hairPoint35Y);
+    quadraticVertex(hairPoint36X+20,hairPoint36Y,hairPoint32X,hairPoint32Y);
+    quadraticVertex(hairPoint29X,hairPoint29Y,hairPoint28X,hairPoint28Y-20);
+    vertex(hairPoint27X,hairPoint27Y-40);
+    vertex(hairPoint1X,hairPoint1Y);
+    endShape();
+    
+    beginShape();
+    vertex(hairPoint1X,hairPoint1Y);
+    vertex(hairPoint27X,hairPoint27Y-20);
+    vertex(hairPoint28X,hairPoint28Y);
+    quadraticVertex(hairPoint29X,hairPoint29Y,hairPoint30X,hairPoint30Y);
+    quadraticVertex(hairPoint31X,hairPoint31Y,hairPoint32X,hairPoint32Y);
+    quadraticVertex(hairPoint33X,hairPoint33Y,hairPoint34X,hairPoint34Y-40);
+    quadraticVertex(hairPoint28X,hairPoint28Y-60,hairPoint27X,hairPoint27Y-40);
+    vertex(hairPoint1X,hairPoint1Y);
+    endShape();
+
+    // Leftside of the Hair
+    beginShape();
+    vertex(hairPoint1X,hairPoint1Y);
+    vertex(hairPoint9X+28,hairPoint9Y-130);
+    quadraticVertex(hairPoint13X-30,hairPoint13Y,hairPoint14X,hairPoint14Y-20);
+    quadraticVertex(hairPoint13X-60,hairPoint13Y,hairPoint9X+20,hairPoint9Y-160);
+    quadraticVertex(hairPoint5X+10,hairPoint5Y-80,hairPoint1X,hairPoint1Y);
+    endShape();
+
+    beginShape();
+    vertex(hairPoint1X,hairPoint1Y);
+    vertex(hairPoint8X+10,hairPoint8Y-138);
+    vertex(hairPoint9X+16,hairPoint9Y-60);
+    quadraticVertex(hairPoint10X,hairPoint10Y+20,hairPoint11X,hairPoint11Y);
+    quadraticVertex(hairPoint12X-10,hairPoint12Y,hairPoint8X,hairPoint8Y-160);
+    quadraticVertex(hairPoint5X+10,hairPoint5Y-60,hairPoint1X,hairPoint1Y);
+    endShape();
+
     beginShape();
     vertex(hairPoint1X,hairPoint1Y);
     quadraticVertex(hairPoint2X,hairPoint2Y,hairPoint3X,hairPoint3Y);
     quadraticVertex(hairPoint4X-20,hairPoint4Y,hairPoint5X,hairPoint5Y-30);
     vertex(hairPoint1X,hairPoint1Y);
     endShape();
+
+    beginShape();
+    vertex(hairPoint1X,hairPoint1Y);
+    vertex(hairPoint5X,hairPoint5Y-30);
+    quadraticVertex(hairPoint4X-20,hairPoint4Y,hairPoint6X,hairPoint6Y);
+    quadraticVertex(hairPoint7X-45,hairPoint7Y,hairPoint8X+10,hairPoint8Y-145);
+    quadraticVertex(hairPoint5X+5,hairPoint5Y-45,hairPoint1X,hairPoint1Y);
+    endShape();
+
+    beginShape();
+    vertex(hairPoint1X,hairPoint1Y);
+    endShape();
+
+  
     
 
      // fill(225, 225, 0);
