@@ -5,49 +5,17 @@ function prepareInteraction() {
 }
 
 function drawInteraction(faces, hands) {
-  //image(ComputingLabImage, 0, 0, width, height);
+  image(ComputingLabImage, 0, 0, width, height);
   // hands part
   // USING THE GESTURE DETECTORS (check their values in the debug menu)
   // detectHandGesture(hand) returns "Pinch", "Peace", "Thumbs Up", "Pointing", "Open Palm", or "Fist"
 
-  // for loop to capture if there is more than one hand on the screen. This applies the same process to all hands.
-  for (let i = 0; i < hands.length; i++) {
-    let hand = hands[i];
-    if (showKeypoints) {
-      drawPoints(hand)
-      drawConnections(hand)
-    }
-    // console.log(hand);
-    let indexFingerTipX = hand.index_finger_tip.x;
-    let indexFingerTipY = hand.index_finger_tip.y;
-    let middleFingerTipX = hand.middle_finger_tip.x;
-    let middleFingerTipY = hand.middle_finger_tip.y;
-    let ringFingerTipX = hand.ring_finger_tip.x;
-    let ringFingerTipY = hand.ring_finger_tip.y;
-    let pinkyFingerTipX = hand.pinky_finger_tip.x;
-    let pinkyFingerTipY = hand.pinky_finger_tip.y;
-    let thumbTipX = hand.thumb_tip.x;
-    let thumbTipY = hand.thumb_tip.y;
-    /*
-    Start drawing on the hands here
-    */
-
-    // pinchCircle(hand)
-    fill(225, 225, 0);
-    ellipse(thumbTipX, thumbTipY, 40, 40);
-    ellipse(indexFingerTipX, indexFingerTipY, 40, 40);
-    ellipse(middleFingerTipX, middleFingerTipY, 40, 40);
-    ellipse(ringFingerTipX, ringFingerTipY, 40, 40);
-    ellipse(pinkyFingerTipX, pinkyFingerTipY, 40, 40);
-
-    /*
-    Stop drawing on the hands here
-    */
-  }
-
-
+  //this looks in the hands array, and sorts out the left and right hands into two variables
+  let LH = hands.find(hand => hand.handedness === "Left");
+  let RH = hands.find(hand => hand.handedness === "Right");
 
   //------------------------------------------------------------
+  
   //facePart
   // for loop to capture if there is more than one face on the screen. This applies the same process to all faces. 
   for (let i = 0; i < faces.length; i++) {
@@ -68,18 +36,6 @@ function drawInteraction(faces, hands) {
     let rightEyeCenterY = face.rightEye.centerY;
     let rightEyeWidth = face.rightEye.width;
     let rightEyeHeight = face.rightEye.height;
-
-    // Left eyebrow
-    let leftEyebrowCenterX = face.leftEyebrow.centerX;
-    let leftEyebrowCenterY = face.leftEyebrow.centerY;
-    let leftEyebrowWidth = face.leftEyebrow.width;
-    let leftEyebrowHeight = face.leftEyebrow.height;
-
-    // Right eyebrow
-    let rightEyebrowCenterX = face.rightEyebrow.centerX;
-    let rightEyebrowCenterY = face.rightEyebrow.centerY;
-    let rightEyebrowWidth = face.rightEyebrow.width;
-    let rightEyebrowHeight = face.rightEyebrow.height;
 
     // Brightnose
     let noseTipX = face.keypoints[1].x;
@@ -116,6 +72,18 @@ function drawInteraction(faces, hands) {
     let rightForeheadCenterY = face.keypoints[297].y;
     let leftForeheadCenterX = face.keypoints[67].x;
     let leftForeheadCenterY = face.keypoints[67].y;
+
+    // Leftside of the neck
+    let leftNeckPoint1X = face.keypoints[149].x;
+    let leftNeckPoint1Y = face.keypoints[149].y;
+    let leftNeckPoint2X = face.keypoints[150].x;
+    let leftNeckPoint2Y = face.keypoints[150].y;
+
+    // Rightside of the neck
+    let rightNeckPoint1X = face.keypoints[378].x;
+    let rightNeckPoint1Y = face.keypoints[378].y;
+    let rightNeckPoint2X = face.keypoints[379].x;
+    let rightNeckPoint2Y = face.keypoints[379].y;
 
     // Lips
     let lipsCenterX = face.lips.centerX;
@@ -253,6 +221,151 @@ function drawInteraction(faces, hands) {
     Start drawing on the face here
     */
 
+
+    // Back of Lab coat
+    fill(0,43,54)
+    stroke(0)
+    strokeWeight(1)
+    beginShape();
+    vertex(770,400)
+    quadraticVertex(670,380,570,400)
+    quadraticVertex(600,430,600,450)
+    quadraticVertex(670,500,740,450)
+    quadraticVertex(740,430,760,400)
+    endShape();
+
+    beginShape();
+    vertex(570,420)
+    quadraticVertex(540,450,670,480)
+    quadraticVertex(800,450,769,420)
+    endShape();
+
+    // Neck
+    fill(255,238,217)
+    stroke(0)
+    strokeWeight(1)
+    beginShape();
+    vertex(leftNeckPoint1X-20,leftNeckPoint1Y-60)
+    quadraticVertex(610,440,600,480)
+    vertex(740,480)
+    quadraticVertex(730,440,rightNeckPoint1X+20,rightNeckPoint1Y-60)
+    endShape();
+
+    fill(255,236,200)
+    noStroke()
+    beginShape();
+    vertex(leftNeckPoint1X-5,leftNeckPoint1Y-60);
+    quadraticVertex(leftNeckPoint1X-4,leftNeckPoint1Y,bottomChinX,bottomChinY+10);
+    quadraticVertex(rightNeckPoint1X+4,rightNeckPoint1Y,rightNeckPoint1X+5,rightNeckPoint1Y-60);
+    endShape();
+
+
+    // Lab coat
+    fill(19,79,92)
+    stroke(0)
+    strokeWeight(1)
+    beginShape();
+    vertex(260,720)
+    quadraticVertex(340,525,380,500)
+    vertex(580,460)
+    quadraticVertex(590,440,570,420)
+    quadraticVertex(560,410,570,400)
+    vertex(580,400)
+    quadraticVertex(600,430,600,450)
+    quadraticVertex(670,500,740,450)
+    quadraticVertex(740,430,760,400)
+    vertex(770,400)
+    quadraticVertex(780,410,770,420)
+    quadraticVertex(750,440,760,460)
+    vertex(960,500)
+    quadraticVertex(1000,525,1080,720)
+    vertex(920,720)
+    vertex(900,680)
+    vertex(900,750)
+    vertex(440,750)
+    vertex(440,680)
+    vertex(420,720)
+    vertex(260,720)
+    endShape();
+
+    // Lab coat stripe part
+    fill(255,212,71)
+    stroke(255,212,71)
+    strokeWeight(1)
+    beginShape();
+    vertex(800,468)
+    vertex(800,720)
+    vertex(820,720)
+    vertex(820,472)
+    endShape();
+
+    // Lab coat stripe part 2
+    fill(51,140,187)
+    stroke(51,140,187)
+    strokeWeight(1)
+    beginShape();
+    vertex(540,468)
+    vertex(540,720)
+    vertex(534,720)
+    vertex(534,469.5)
+    endShape();
+
+    beginShape();
+    vertex(526,471)
+    vertex(526,720)
+    vertex(520,720)
+    vertex(520,472)
+    endShape();
+
+    // Lab coat hood part
+    fill(19,79,92)
+    stroke(0)
+    strokeWeight(1)
+    beginShape();
+    vertex(769,420)
+    quadraticVertex(840,430,830,460)
+    quadraticVertex(860,480,730,500)
+    quadraticVertex(680,490,670,480)
+    quadraticVertex(660,490,610,500)
+    quadraticVertex(480,480,510,460)
+    quadraticVertex(500,430,570,420)
+    quadraticVertex(540,450,670,480)
+    quadraticVertex(800,450,769,420)
+    endShape();
+
+    beginShape();
+    vertex(830,460)
+    quadraticVertex(820,468,800,470)
+    endShape();
+    beginShape();
+    vertex(510,460)
+    quadraticVertex(520,468,540,470)
+    endShape();
+
+    // Badge
+    fill(255,212,71)
+    stroke(0)
+    strokeWeight(1)
+    ellipse(810,580,80,80)
+    fill(215,38,56)
+    ellipse(810,580,70,70)
+    fill(255,212,71)
+    beginShape();
+    vertex(808,545)
+    vertex(808,578)
+    vertex(775,578)
+    vertex(775,582)
+    vertex(808,582)
+    vertex(808,615)
+    vertex(812,615)
+    vertex(812,582)
+    vertex(845,582)
+    vertex(845,578)
+    vertex(812,578)
+    vertex(812,545)
+    endShape();
+
+    
     // Face
     fill(255,238,217)
     stroke(0)
@@ -267,6 +380,16 @@ function drawInteraction(faces, hands) {
     quadraticVertex(leftForeheadCenterX,leftForeheadCenterY,foreheadCenterX,foreheadCenterY);
     quadraticVertex(rightForeheadCenterX,rightForeheadCenterY,rightForeheadX,rightForeheadY);
     endShape();
+
+
+    // Glasses
+    fill(255,255,255,150)
+    stroke(0)
+    strokeWeight(2)
+    rect(leftEyeCenterX-40,leftEyeCenterY-30,80,60,30)
+    rect(rightEyeCenterX-40,rightEyeCenterY-30,80,60,30)
+    line(leftEyeCenterX-80,leftEyeCenterY-10,rightEyeCenterX+80,rightEyeCenterY-10)
+    
 
 
     // Lips
@@ -321,7 +444,7 @@ function drawInteraction(faces, hands) {
     quadraticVertex(hairPoint21X-30,hairPoint21Y+50,hairPoint19X-25,hairPoint19Y);
     quadraticVertex(hairPoint19X-28,hairPoint19Y+20,hairPoint20X-36,hairPoint20Y);
     quadraticVertex(hairPoint23X-70,hairPoint23Y-160,hairPoint22X+100,hairPoint22Y-120);
-    quadraticVertex(hairPoint22X+120,hairPoint22Y-120,hairPoint5X+20,hairPoint5Y-80)
+    quadraticVertex(hairPoint22X+120,hairPoint22Y-120,hairPoint5X+20,hairPoint5Y-85)
     quadraticVertex(hairPoint24X+40,hairPoint24Y-160,hairPoint25X+20,hairPoint25Y-40);
     quadraticVertex(hairPoint26X+10,hairPoint26Y-20,rightJawX,rightJawY);
     quadraticVertex(rightCheekX,rightCheekY,rightForeheadX,rightForeheadY);
@@ -329,15 +452,25 @@ function drawInteraction(faces, hands) {
     quadraticVertex(leftForeheadCenterX,leftForeheadCenterY,hairPoint15X,hairPoint15Y);
     endShape();
 
+
     // Frontside of the Hair
     beginShape();
-    vertex(hairPoint5X+20,hairPoint5Y-80);
-    quadraticVertex(hairPoint5X+50,hairPoint5Y-40,hairPoint1X,hairPoint1Y);
+    vertex(hairPoint5X+21,hairPoint5Y-85);
+    quadraticVertex(hairPoint5X+50,hairPoint5Y-60,hairPoint1X,hairPoint1Y);
     endShape();
     beginShape();
-    vertex(hairPoint5X+20,hairPoint5Y-80);
-    quadraticVertex(hairPoint23X-50,hairPoint23Y-140,hairPoint19X-25,hairPoint19Y);
+    vertex(hairPoint22X+100,hairPoint22Y-120);
+    quadraticVertex(hairPoint23X+40,hairPoint23Y-180,hairPoint19X,hairPoint19Y-160);
+    quadraticVertex(hairPoint13X-30,hairPoint13Y-70,hairPoint13X-40,hairPoint13Y-80);
+    quadraticVertex(hairPoint13X-30,hairPoint13Y-50,hairPoint19X,hairPoint19Y-140);
     endShape();
+    beginShape();
+    vertex(hairPoint5X+40,hairPoint5Y-40);
+    quadraticVertex(hairPoint23X+90,hairPoint23Y-240,hairPoint19X-5,hairPoint19Y-90);
+    vertex(hairPoint23X+50,hairPoint23Y-120);
+    //quadraticVertex(hairPoint23X+100,hairPoint23Y-160,hairPoint5X+20,hairPoint5Y-85);
+    endShape();
+
 
     // Rightside of the Hair
     beginShape();
@@ -373,6 +506,7 @@ function drawInteraction(faces, hands) {
     vertex(hairPoint1X,hairPoint1Y);
     endShape();
 
+
     // Leftside of the Hair
     beginShape();
     vertex(hairPoint1X,hairPoint1Y);
@@ -406,11 +540,6 @@ function drawInteraction(faces, hands) {
     quadraticVertex(hairPoint5X+5,hairPoint5Y-45,hairPoint1X,hairPoint1Y);
     endShape();
 
-    beginShape();
-    vertex(hairPoint1X,hairPoint1Y);
-    endShape();
-
-  
     
 
      // fill(225, 225, 0);
@@ -426,9 +555,180 @@ function drawInteraction(faces, hands) {
     */
 
   }
+
+
+  //------------------------------------------------------------
+
+  //Hands part
+  // for loop to capture if there is more than one hand on the screen. This applies the same process to all hands.
+  for (let i = 0; i < hands.length; i++) {
+    let hand = hands[i];
+    if (showKeypoints) {
+      drawPoints(hand)
+      drawConnections(hand)
+    }
+    // console.log(hand);
+
+    // Tip of each finger
+    let thumbTipX = hand.thumb_tip.x;
+    let thumbTipY = hand.thumb_tip.y;
+    let indexFingerTipX = hand.index_finger_tip.x;
+    let indexFingerTipY = hand.index_finger_tip.y;
+    let middleFingerTipX = hand.middle_finger_tip.x;
+    let middleFingerTipY = hand.middle_finger_tip.y;
+    let ringFingerTipX = hand.ring_finger_tip.x;
+    let ringFingerTipY = hand.ring_finger_tip.y;
+    let pinkyFingerTipX = hand.pinky_finger_tip.x;
+    let pinkyFingerTipY = hand.pinky_finger_tip.y;
+
+    // Dip of each finger
+    let thumbDipX = hand.keypoints[3].x;
+    let thumbDipY = hand.keypoints[3].y;
+    let indexFingerDipX = hand.keypoints[7].x;
+    let indexFingerDipY = hand.keypoints[7].y;
+    let middleFingerDipX = hand.keypoints[11].x;
+    let middleFingerDipY = hand.keypoints[11].y;
+    let ringFingerDipX = hand.keypoints[15].x;
+    let ringFingerDipY = hand.keypoints[15].y;
+    let pinkyFingerDipX = hand.keypoints[19].x;
+    let pinkyFingerDipY = hand.keypoints[19].y;
+
+    // Base of each finger
+    let thumbBaseX = hand.keypoints[2].x;
+    let thumbBaseY = hand.keypoints[2].y;
+    let indexFingerBaseX = hand.keypoints[6].x;
+    let indexFingerBaseY = hand.keypoints[6].y;
+    let middleFingerBaseX = hand.keypoints[10].x;
+    let middleFingerBaseY = hand.keypoints[10].y;
+    let ringFingerBaseX = hand.keypoints[14].x;
+    let ringFingerBaseY = hand.keypoints[14].y;
+    let pinkyFingerBaseX = hand.keypoints[18].x;
+    let pinkyFingerBaseY = hand.keypoints[18].y;
+
+    // Knuckles
+    let thumbKnuckleX = hand.keypoints[1].x;
+    let thumbKnuckleY = hand.keypoints[1].y;
+    let indexFingerKnuckleX = hand.keypoints[5].x;
+    let indexFingerKnuckleY = hand.keypoints[5].y;
+    let middleFingerKnuckleX = hand.keypoints[9].x;
+    let middleFingerKnuckleY = hand.keypoints[9].y;
+    let ringFingerKnuckleX = hand.keypoints[13].x;
+    let ringFingerKnuckleY = hand.keypoints[13].y;
+    let pinkyFingerKnuckleX = hand.keypoints[17].x;
+    let pinkyFingerKnuckleY = hand.keypoints[17].y;
+
+    // Wrist
+    let wristX = hand.wrist.x;
+    let wristY = hand.wrist.y;
+    
+    /*
+
+    if (hand.handedness === "Left") {
+    // I've tried to implement the left and right hand separately, but it doesn't work properly yet.
+    // So currently only the left hand is drawn properly.
+    Start drawing on the hands here
+    */
+
+    // Glove
+
+    // Wrist
+    fill(143,179,187);
+    stroke(69,129,142)
+    strokeWeight(1)
+    beginShape();
+    vertex(wristX-40,wristY-10);
+    vertex(pinkyFingerKnuckleX-20,pinkyFingerKnuckleY);
+    quadraticVertex(middleFingerKnuckleX,middleFingerKnuckleY-20,indexFingerKnuckleX+20,indexFingerKnuckleY);
+    vertex(thumbBaseX-20,thumbBaseY);
+    vertex(thumbKnuckleX+20,thumbKnuckleY);
+    vertex(thumbKnuckleX+60,thumbKnuckleY+40);
+    quadraticVertex(thumbKnuckleX-10,thumbKnuckleY+60,wristX-80,wristY+40);
+    vertex(wristX-40,wristY-10);
+    endShape();
+
+    // Fingers
+    beginShape();
+    vertex(pinkyFingerKnuckleX-20,pinkyFingerKnuckleY);
+    vertex(pinkyFingerBaseX-20,pinkyFingerBaseY);
+    vertex(pinkyFingerDipX-20,pinkyFingerDipY);
+    vertex(pinkyFingerTipX,pinkyFingerTipY);
+    vertex(pinkyFingerDipX+20,pinkyFingerDipY);
+    vertex(pinkyFingerBaseX+20,pinkyFingerBaseY);
+    vertex(pinkyFingerKnuckleX+20,pinkyFingerKnuckleY);
+    endShape();
+
+    beginShape();
+    vertex(ringFingerKnuckleX-20,ringFingerKnuckleY+10);
+    vertex(ringFingerBaseX-20,ringFingerBaseY);
+    vertex(ringFingerDipX-20,ringFingerDipY);
+    vertex(ringFingerTipX,ringFingerTipY);
+    vertex(ringFingerDipX+20,ringFingerDipY);
+    vertex(ringFingerBaseX+20,ringFingerBaseY);
+    vertex(ringFingerKnuckleX+20,ringFingerKnuckleY);
+    endShape();
+
+    beginShape();
+    vertex(middleFingerKnuckleX-20,middleFingerKnuckleY+5);
+    vertex(middleFingerBaseX-20,middleFingerBaseY);
+    vertex(middleFingerDipX-20,middleFingerDipY);
+    vertex(middleFingerTipX,middleFingerTipY);
+    vertex(middleFingerDipX+20,middleFingerDipY);
+    vertex(middleFingerBaseX+20,middleFingerBaseY);
+    vertex(middleFingerKnuckleX+20,middleFingerKnuckleY);
+    endShape();
+
+    beginShape();
+    vertex(indexFingerKnuckleX-20,indexFingerKnuckleY);
+    vertex(indexFingerBaseX-20,indexFingerBaseY);
+    vertex(indexFingerDipX-20,indexFingerDipY);
+    vertex(indexFingerTipX,indexFingerTipY);
+    vertex(indexFingerDipX+20,indexFingerDipY);
+    vertex(indexFingerBaseX+20,indexFingerBaseY);
+    vertex(indexFingerKnuckleX+20,indexFingerKnuckleY);
+    endShape();
+
+    beginShape();
+    vertex(thumbBaseX-20,thumbBaseY);
+    vertex(thumbDipX-20,thumbDipY);
+    vertex(thumbTipX,thumbTipY);
+    vertex(thumbDipX+20,thumbDipY);
+    vertex(thumbBaseX+20,thumbBaseY);
+    vertex(thumbKnuckleX+20,thumbKnuckleY);
+    endShape();
+
+    
+    // Flask
+    pinchCircle(hand);
+
+    
+    }
+    if (hands.handedness === "Right") {
+    // Wrist
+    fill(143,179,187);
+    stroke(69,129,142)
+    strokeWeight(1)
+    beginShape();
+    vertex(wristX+40,wristY-10);
+    vertex(pinkyFingerKnuckleX+20,pinkyFingerKnuckleY);
+    quadraticVertex(middleFingerKnuckleX,middleFingerKnuckleY-20,indexFingerKnuckleX-20,indexFingerKnuckleY);
+    vertex(thumbBaseX+20,thumbBaseY);
+    vertex(thumbKnuckleX-20,thumbKnuckleY);
+    vertex(thumbKnuckleX-60,thumbKnuckleY+40);
+    quadraticVertex(thumbKnuckleX+10,thumbKnuckleY+60,wristX+80,wristY+40);
+    vertex(wristX+40,wristY-10);
+    endShape();
+    }
+    /*
+    Stop drawing on the hands here
+    */
+  }
+
+
+
+
   //------------------------------------------------------
   // You can make addtional elements here, but keep the face drawing inside the for loop. 
-}
+
 function drawX(X, Y) {
   push()
 
@@ -470,7 +770,7 @@ function pinchCircle(hand) { // adapted from https://editor.p5js.org/ml5/sketche
 
   // This circle's size is controlled by a "pinch" gesture
   fill(0, 255, 0, 200);
-  stroke(0);
+  stroke(255);
   strokeWeight(2);
   circle(centerX, centerY, pinch);
 
